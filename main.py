@@ -6,37 +6,27 @@ try:
     from rich.console import Console
     from rich.table import Table
     from rich.panel import Panel
-
     import random
     import pyfiglet
-    from termcolor import colored
+
     os.system('clear')
-   
+    console = Console()
     network_ip = "192.168.0.0/24"
     gateway_ip = "192.168.0.1"
-
+    device_mac_map = {} 
 
     ######################################################       
-    font = pyfiglet.figlet_format("     CutX", font="slant")
-
-    list_color = ['green','blue','cyan','yellow']
-    list_color2 = ['light_green','light_blue','light_cyan','light_yellow']
-
-    rand_color = random.choice(list_color)
-    rand_color2 = random.choice(list_color2)
-
-    print(colored('----------------------------------------------------------',rand_color2))
-    print(colored(font,rand_color))
-    print(colored('----------------------------------------------------------',rand_color2))
 
     running = False
     target_ips = [] 
 
 
-    console = Console()
+    
 
 
     def get_mac(ip):
+        if ip in device_mac_map:
+            return device_mac_map[ip]
         try:
             arp_request = ARP(pdst=ip)
             broadcast = Ether(dst="ff:ff:ff:ff:ff:ff")
@@ -54,9 +44,12 @@ try:
 
 
 
+
     def scan_network(network_ip):
         console.print("[*] Scanning the network, please wait...", style="cyan")
         devices = {}
+         
+
         try:
             arp_request = ARP(pdst=network_ip)
             broadcast = Ether(dst="ff:ff:ff:ff:ff:ff")
@@ -69,6 +62,8 @@ try:
 
         except Exception as e:
             console.print(f"[-] Error while scanning network: {str(e)}", style="red")
+        global device_mac_map
+        device_mac_map = devices  
 
         device_list = [{'ip': ip, 'mac': mac} for ip, mac in devices.items()]
         return device_list
@@ -144,6 +139,7 @@ try:
             target_ips = [devices[index]['ip'] for index in selected_indices if 0 <= index < len(devices)]
             
             if target_ips:
+                console.print('\nDONE CUT NET TO THE ===>',''.join(target_ips),style='green')
                 start_spoofing_thread()
             else:
                 console.print("Invalid selection. Please try again.", style="red")
@@ -182,7 +178,20 @@ try:
 
  
     if __name__ == "__main__":
-        console.print(Panel("[bold green]IT IS USED TO CUT OFF THE INTERNET ON DEVICES CONNECTED TO THE NETWORK", title="NETCUTX", style="magenta"))
+        os.system('clear')
+        font = pyfiglet.figlet_format("   NETCUT-X", font="slant")
+
+        list_color = ["red", "green", "blue", "yellow", "magenta", "cyan"]
+
+
+        rand_color = random.choice(list_color)
+        rand_color2 = random.choice(list_color)
+
+        console.print('-*-'*21,style=rand_color)
+        console.print(font,style=rand_color2)
+        console.print('-*-'*21,style=rand_color)
+
+        console.print(Panel("[bold green]IT IS USED TO CUT OFF THE INTERNET ON DEVICES CONNECTED TO THE NETWORK", title="NETCUTX", style="magenta",width=75))
         user_input()
 except ImportError:
     c = input('models is not install\n\nDo you Auto installtion  models (Y/?)')
