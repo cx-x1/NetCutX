@@ -1,5 +1,5 @@
 # NETCUTX
-![NETCUTX Banner](image.png)
+<img src="image.png" alt="NETCUTX Banner" width="400"/>
 ## Description
 This project is designed to enable you to disconnect users from the internet on the same network.
 
@@ -20,6 +20,8 @@ Don't worry
 
 # setup
 ```bash
+
+git clone https://github.com/cx-x1/NetCutX/
 pip install -r requirements.txt
 ```
 # Run
