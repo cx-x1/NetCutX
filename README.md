@@ -20,9 +20,12 @@ Don't worry
 
 # setup
 ```bash
+sudo apt install python3 -y
 
 git clone https://github.com/cx-x1/NetCutX/
+
 pip install -r requirements.txt
+
 ```
 # Run
 
@@ -45,4 +48,10 @@ use command ```bash scan OR sc```
 - `stop` OR `s` : stop spoofing on Device
 - `exit` or `E` : Quit from Tool
   
+# Tested on
+
+- **Python:** 3.6+
+- **Operating Systems:**
+  - Kali Linux
+  - macOS
 
