@@ -22,7 +22,7 @@ Don't worry
 ```bash
 sudo apt install python3 -y
 
-git clone https://github.com/cx-x1/NetCutX/
+git clone https://github.com/cx-x1/NetCutX.git
 
 cd NETCUTX
 
