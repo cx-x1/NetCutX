@@ -37,8 +37,7 @@ Run script use root
 ## use
 
 1 - Scan devices connected to the network
-use command ```bash 
-scan OR sc```
+use command ``` scan OR sc```
 
 2 - select device target using Serial number
 
