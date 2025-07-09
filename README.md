@@ -24,6 +24,8 @@ sudo apt install python3 -y
 
 git clone https://github.com/cx-x1/NetCutX/
 
+cd NETCUTX
+
 pip install -r requirements.txt
 
 ```
